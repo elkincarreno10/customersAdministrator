@@ -1,6 +1,6 @@
-import Campesino from "../models/Campesinos"
-import FacturaCampesino from "../models/FacturasCampesinos"
-import AbonoCampesino from "../models/AbonosCampesinos"
+import Campesino from "../models/Campesinos.js"
+import FacturaCampesino from "../models/FacturasCampesinos.js"
+import AbonoCampesino from "../models/AbonosCampesinos.js"
 
 const campesinos = async (req, res) => {
 
@@ -25,7 +25,7 @@ const crearCampesino = async (req, res) => {
         })
     }
 
-    const campesino: any = await Campesino.create({ name, usuarioId: req.usuario.id })
+    const campesino = await Campesino.create({ name, usuarioId: req.usuario.id })
 
     res.json({
         msg: 'Campesino Creado Correactamente',
@@ -36,7 +36,7 @@ const crearCampesino = async (req, res) => {
 const updateCampesino = async (req, res) => {
     const { name, nameNuevo, saldo } = req.body
 
-    const campesino: any = await Campesino.findOne({ where: { name }})
+    const campesino = await Campesino.findOne({ where: { name }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -54,7 +54,7 @@ const updateCampesino = async (req, res) => {
 const eliminarCampesino = async (req, res) => {
     const { id } = req.params
 
-    const campesino: any = await Campesino.findOne({ where: { id }})
+    const campesino = await Campesino.findOne({ where: { id }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -70,7 +70,7 @@ const eliminarCampesino = async (req, res) => {
 const obtenerFacturas = async (req, res) => {
     const { id } = req.params
 
-    const campesino: any = await Campesino.findOne({ where: { id }})
+    const campesino = await Campesino.findOne({ where: { id }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -87,7 +87,7 @@ const obtenerFacturas = async (req, res) => {
 const crearFactura = async (req, res) => {
     const { campesinoId, descripcion, saldo, fecha } = req.body
 
-    const campesino: any = await Campesino.findOne({ where: { id: campesinoId }})
+    const campesino = await Campesino.findOne({ where: { id: campesinoId }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -107,13 +107,13 @@ const crearFactura = async (req, res) => {
 const updateFactura = async (req, res) => {
     const { id, campesinoId, descripcion, saldo, fecha } = req.body
 
-    const campesino: any = await Campesino.findOne({ where: { id: campesinoId }})
+    const campesino = await Campesino.findOne({ where: { id: campesinoId }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
     }
 
-    const factura: any = await FacturaCampesino.findOne({ where: { id } })
+    const factura = await FacturaCampesino.findOne({ where: { id } })
 
     campesino.saldo = campesino.saldo + saldo - factura.saldo
     await campesino.save()
@@ -132,7 +132,7 @@ const updateFactura = async (req, res) => {
 const eliminarFactura = async (req, res) => {
     const { id } = req.params
 
-    const factura: any = await FacturaCampesino.findOne({ where: { id }})
+    const factura = await FacturaCampesino.findOne({ where: { id }})
 
     if(factura.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -148,7 +148,7 @@ const eliminarFactura = async (req, res) => {
 const cambiarEstado = async (req, res) => {
     const { id } = req.params
 
-    const factura: any = await FacturaCampesino.findOne({ where: { id }})
+    const factura = await FacturaCampesino.findOne({ where: { id }})
 
     if(factura.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -169,7 +169,7 @@ const cambiarEstado = async (req, res) => {
 const obtenerAbonos = async (req, res) => {
     const { id } = req.params
 
-    const campesino: any = await Campesino.findOne({ 
+    const campesino = await Campesino.findOne({ 
         where: { id }
     })
 
@@ -188,7 +188,7 @@ const obtenerAbonos = async (req, res) => {
 const crearAbono = async (req, res) => {
     const { campesinoId, descripcion, saldo, fecha } = req.body
 
-    const campesino: any = await Campesino.findOne({ where: { id: campesinoId }})
+    const campesino = await Campesino.findOne({ where: { id: campesinoId }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -208,13 +208,13 @@ const crearAbono = async (req, res) => {
 const updateAbono = async (req, res) => {
     const { id, campesinoId, descripcion, saldo, fecha } = req.body
 
-    const campesino: any = await Campesino.findOne({ where: { id: campesinoId }})
+    const campesino = await Campesino.findOne({ where: { id: campesinoId }})
 
     if(campesino.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
     }
 
-    const abono: any = await AbonoCampesino.findOne({ where: { id } })
+    const abono = await AbonoCampesino.findOne({ where: { id } })
 
     campesino.saldo = campesino.saldo - saldo + abono.saldo
     await campesino.save()
@@ -233,7 +233,7 @@ const updateAbono = async (req, res) => {
 const eliminarAbono = async (req, res) => {
     const { id } = req.params
 
-    const abono: any = await AbonoCampesino.findOne({ where: { id }})
+    const abono = await AbonoCampesino.findOne({ where: { id }})
 
     if(abono.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })

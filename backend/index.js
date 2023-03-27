@@ -1,12 +1,12 @@
 import express from "express";
 import dotenv from 'dotenv'
 import cors from 'cors'
-import db from "./config/db";
+import db from "./config/db.js";
 import path from 'path'
-import loginRoutes from './routes/loginRoutes'
-import clientesRoutes from './routes/clientesRoutes'
-import campesinosRoutes from './routes/campesinosRoutes'
-import obrerosRoutes from './routes/obrerosRoutes'
+import loginRoutes from './routes/loginRoutes.js'
+import clientesRoutes from './routes/clientesRoutes.js'
+import campesinosRoutes from './routes/campesinosRoutes.js'
+import obrerosRoutes from './routes/obrerosRoutes.js'
 
 process.env.TZ = 'America/Bogota';
 const app = express()
@@ -20,7 +20,7 @@ app.use(express.json())
 const whiteList = [process.env.FRONTEND_URL]
 
 const corsOptions = {
-    origin: function(origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    origin: function(origin, callback) {
         if (!origin) return callback(null, true);
 
         if(whiteList.includes(origin)) {
@@ -41,12 +41,12 @@ app.use('/api/campesinos', campesinosRoutes)
 app.use('/api/obreros', obrerosRoutes)
 
 
-const buildPath = path.join(__dirname, "../frontend/dist")
+const buildPath = new URL('../frontend/dist', import.meta.url).pathname
 app.use(express.static(buildPath))
 
 app.get('/*', function(req, res){
     res.sendFile(
-        path.join(__dirname, "../frontend/dist/index.html"),
+        new URL('../frontend/dist/index.html', import.meta.url).pathname,
         function (err) {
             if (err) {
                 res.status(500).send(err)

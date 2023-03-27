@@ -1,6 +1,6 @@
 import express from "express";
-import { campesinos, crearCampesino, updateCampesino, eliminarCampesino, obtenerFacturas, crearFactura, updateFactura, eliminarFactura, cambiarEstado, obtenerAbonos, crearAbono, updateAbono, eliminarAbono } from "../controllers/campesinosController";
-import checkAuth from "../middleware/checkAuth";
+import { campesinos, crearCampesino, updateCampesino, eliminarCampesino, obtenerFacturas, crearFactura, updateFactura, eliminarFactura, cambiarEstado, obtenerAbonos, crearAbono, updateAbono, eliminarAbono } from "../controllers/campesinosController.js";
+import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router()
 

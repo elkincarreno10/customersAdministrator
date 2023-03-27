@@ -1,9 +1,9 @@
 import { DataTypes } from "sequelize";
-import Usuario from "./Usuarios";
-import Cliente from "./Clientes";
-import db from "../config/db";
+import Usuario from "./Usuarios.js";
+import Campesino from "./Campesinos.js";
+import db from "../config/db.js";
 
-const FacturaCliente = db.define('FacturasClientes', {
+const FacturaCampesino = db.define('FacturasCampesinos', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -33,16 +33,16 @@ const FacturaCliente = db.define('FacturasClientes', {
             key: 'id'
         }
     },
-    clienteId: {
+    campesinoId: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'Clientes',
+            model: 'Campesinos',
             key: 'id'
         }
     }
 })
 
-FacturaCliente.belongsTo(Usuario, { foreignKey: 'usuarioId', onDelete: 'CASCADE' });
-FacturaCliente.belongsTo(Cliente, { foreignKey: 'clienteId', onDelete: 'CASCADE'});
+FacturaCampesino.belongsTo(Usuario, { foreignKey: 'usuarioId', onDelete: 'CASCADE' });
+FacturaCampesino.belongsTo(Campesino, { foreignKey: 'campesinoId', onDelete: 'CASCADE'});
 
-export default FacturaCliente
+export default FacturaCampesino

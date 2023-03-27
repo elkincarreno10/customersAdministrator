@@ -1,18 +1,10 @@
-import generarJWT from "../helpers/generarJWT"
-import generarToken from "../helpers/generarToken"
-import Usuario from "../models/Usuarios"
-import { emailRegistro, emailOlvidePassword } from "../helpers/email"
-
-type usuario = {
-    name: string,
-    email: string,
-    password: string,
-    token: string | null,
-    confirmado: number
-}
+import generarJWT from "../helpers/generarJWT.js"
+import generarToken from "../helpers/generarToken.js"
+import Usuario from "../models/Usuarios.js"
+import { emailRegistro, emailOlvidePassword } from "../helpers/email.js"
 
 const login = async (req, res) => {
-    const { email, password } = req.body as usuario
+    const { email, password } = req.body
 
     const usuario = await Usuario.findOne({ where : {email} })
 
@@ -38,7 +30,7 @@ const login = async (req, res) => {
 }
 
 const registrar = async (req, res) => {
-    const { name, email, password } = req.body as usuario
+    const { name, email, password } = req.body
 
     const existeUsuario = await Usuario.findOne({ where: {email}})
 

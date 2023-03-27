@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { decode } from 'punycode';
-import Usuario from '../models/Usuarios'
+import Usuario from '../models/Usuarios.js'
 
 const checkAuth = async (req, res, next) => {
     let token = '';

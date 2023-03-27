@@ -1,6 +1,6 @@
 import express from "express";
-import { obreros, crearObrero, updateObrero, eliminarObrero } from "../controllers/obrerosController";
-import checkAuth from "../middleware/checkAuth";
+import { obreros, crearObrero, updateObrero, eliminarObrero } from "../controllers/obrerosController.js";
+import checkAuth from "../middleware/checkAuth.js";
 
 const router = express.Router()
 

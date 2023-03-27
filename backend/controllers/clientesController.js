@@ -1,6 +1,6 @@
-import Cliente from "../models/Clientes"
-import FacturaCliente from "../models/FacturasClientes"
-import AbonoCliente from "../models/AbonosClientes"
+import Cliente from "../models/Clientes.js"
+import FacturaCliente from "../models/FacturasClientes.js"
+import AbonoCliente from "../models/AbonosClientes.js"
 
 const clientes = async (req, res) => {
 
@@ -25,7 +25,7 @@ const crearCliente = async (req, res) => {
         })
     }
 
-    const cliente: any = await Cliente.create({ name, usuarioId: req.usuario.id })
+    const cliente = await Cliente.create({ name, usuarioId: req.usuario.id })
 
     res.json({
         msg: 'Cliente Creado Correactamente',
@@ -36,7 +36,7 @@ const crearCliente = async (req, res) => {
 const updateCliente = async (req, res) => {
     const { name, nameNuevo, saldo } = req.body
 
-    const cliente: any = await Cliente.findOne({ where: { name }})
+    const cliente = await Cliente.findOne({ where: { name }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -54,7 +54,7 @@ const updateCliente = async (req, res) => {
 const eliminarCliente = async (req, res) => {
     const { id } = req.params
 
-    const cliente: any = await Cliente.findOne({ where: { id }})
+    const cliente = await Cliente.findOne({ where: { id }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -70,7 +70,7 @@ const eliminarCliente = async (req, res) => {
 const obtenerFacturas = async (req, res) => {
     const { id } = req.params
 
-    const cliente: any = await Cliente.findOne({ where: { id }})
+    const cliente = await Cliente.findOne({ where: { id }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -87,7 +87,7 @@ const obtenerFacturas = async (req, res) => {
 const crearFactura = async (req, res) => {
     const { clienteId, descripcion, saldo, fecha } = req.body
 
-    const cliente: any = await Cliente.findOne({ where: { id: clienteId }})
+    const cliente = await Cliente.findOne({ where: { id: clienteId }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -107,13 +107,13 @@ const crearFactura = async (req, res) => {
 const updateFactura = async (req, res) => {
     const { id, clienteId, descripcion, saldo, fecha } = req.body
 
-    const cliente: any = await Cliente.findOne({ where: { id: clienteId }})
+    const cliente = await Cliente.findOne({ where: { id: clienteId }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
     }
 
-    const factura: any = await FacturaCliente.findOne({ where: { id } })
+    const factura = await FacturaCliente.findOne({ where: { id } })
 
     cliente.saldo = cliente.saldo + saldo - factura.saldo
     await cliente.save()
@@ -132,7 +132,7 @@ const updateFactura = async (req, res) => {
 const eliminarFactura = async (req, res) => {
     const { id } = req.params
 
-    const factura: any = await FacturaCliente.findOne({ where: { id }})
+    const factura = await FacturaCliente.findOne({ where: { id }})
 
     if(factura.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -148,7 +148,7 @@ const eliminarFactura = async (req, res) => {
 const cambiarEstado = async (req, res) => {
     const { id } = req.params
 
-    const factura: any = await FacturaCliente.findOne({ where: { id }})
+    const factura = await FacturaCliente.findOne({ where: { id }})
 
     if(factura.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -169,7 +169,7 @@ const cambiarEstado = async (req, res) => {
 const obtenerAbonos = async (req, res) => {
     const { id } = req.params
 
-    const cliente: any = await Cliente.findOne({ 
+    const cliente = await Cliente.findOne({ 
         where: { id }
     })
 
@@ -188,7 +188,7 @@ const obtenerAbonos = async (req, res) => {
 const crearAbono = async (req, res) => {
     const { clienteId, descripcion, saldo, fecha } = req.body
 
-    const cliente: any = await Cliente.findOne({ where: { id: clienteId }})
+    const cliente = await Cliente.findOne({ where: { id: clienteId }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -208,13 +208,13 @@ const crearAbono = async (req, res) => {
 const updateAbono = async (req, res) => {
     const { id, clienteId, descripcion, saldo, fecha } = req.body
 
-    const cliente: any = await Cliente.findOne({ where: { id: clienteId }})
+    const cliente = await Cliente.findOne({ where: { id: clienteId }})
 
     if(cliente.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
     }
 
-    const abono: any = await AbonoCliente.findOne({ where: { id } })
+    const abono = await AbonoCliente.findOne({ where: { id } })
 
     cliente.saldo = cliente.saldo - saldo + abono.saldo
     await cliente.save()
@@ -233,7 +233,7 @@ const updateAbono = async (req, res) => {
 const eliminarAbono = async (req, res) => {
     const { id } = req.params
 
-    const abono: any = await AbonoCliente.findOne({ where: { id }})
+    const abono = await AbonoCliente.findOne({ where: { id }})
 
     if(abono.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })

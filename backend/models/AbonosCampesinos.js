@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import Usuario from "./Usuarios";
-import Campesino from "./Campesinos";
-import db from "../config/db";
+import Usuario from "./Usuarios.js";
+import Campesino from "./Campesinos.js";
+import db from "../config/db.js";
 
 const AbonoCampesino = db.define('AbonosCampesinos', {
     id: {

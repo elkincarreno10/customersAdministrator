@@ -1,4 +1,4 @@
-import Obrero from "../models/Obreros"
+import Obrero from "../models/Obreros.js"
 
 const obreros = async (req, res) => {
 
@@ -23,7 +23,7 @@ const crearObrero = async (req, res) => {
         })
     }
 
-    const obrero: any = await Obrero.create({ name, usuarioId: req.usuario.id })
+    const obrero = await Obrero.create({ name, usuarioId: req.usuario.id })
 
     res.json({
         msg: 'Obrero Creado Correactamente',
@@ -34,7 +34,7 @@ const crearObrero = async (req, res) => {
 const updateObrero = async (req, res) => {
     const { name, nameNuevo, saldo } = req.body
 
-    const obrero: any = await Obrero.findOne({ where: { name }})
+    const obrero = await Obrero.findOne({ where: { name }})
 
     if(obrero.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })
@@ -52,7 +52,7 @@ const updateObrero = async (req, res) => {
 const eliminarObrero = async (req, res) => {
     const { id } = req.params
 
-    const obrero: any = await Obrero.findOne({ where: { id }})
+    const obrero = await Obrero.findOne({ where: { id }})
 
     if(obrero.usuarioId !== req.usuario.id) {
         return res.status(403).json({msg: 'Acción no Permitida', type: 'error' })

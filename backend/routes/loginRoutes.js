@@ -1,6 +1,6 @@
 import express from "express";
-import checkAuth from "../middleware/checkAuth";
-import { login, registrar, confirmar, olvidePassword, comprobarToken, nuevoPassword, perfil } from "../controllers/loginController";
+import checkAuth from "../middleware/checkAuth.js";
+import { login, registrar, confirmar, olvidePassword, comprobarToken, nuevoPassword, perfil } from "../controllers/loginController.js";
 
 const router = express.Router()
 

@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import bcrypt from 'bcrypt'
-import db from "../config/db";
+import db from "../config/db.js";
 
 const Usuario = db.define('Usuario', {
     id: {
@@ -31,7 +31,7 @@ const Usuario = db.define('Usuario', {
     }
 }, {
     hooks: {
-        beforeSave: async function(usuario: typeof Usuario) {
+        beforeSave: async function(usuario) {
             if(usuario.changed('password')) {
               const previousUsuario = usuario.previous();
               if (previousUsuario.password !== usuario.password) {
@@ -44,7 +44,7 @@ const Usuario = db.define('Usuario', {
 })
 
 // Métodos personalizados
-Usuario.prototype.verificarPassword = function(password: string): boolean {
+Usuario.prototype.verificarPassword = function(password) {
     return bcrypt.compareSync(password, this.password)
 }
 

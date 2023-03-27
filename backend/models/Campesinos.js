@@ -1,8 +1,8 @@
 import { DataTypes } from "sequelize";
-import Usuario from "./Usuarios";
-import db from "../config/db";
+import Usuario from "./Usuarios.js";
+import db from "../config/db.js";
 
-const Obrero = db.define('Obreros', {
+const Campesino = db.define('Campesinos', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -26,6 +26,6 @@ const Obrero = db.define('Obreros', {
     }
 })
 
-Obrero.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+Campesino.belongsTo(Usuario, { foreignKey: 'usuarioId' });
 
-export default Obrero
+export default Campesino
