@@ -42,7 +42,7 @@ const CrearCampesino = () => {
             <input 
                 className="p-1 pl-2 rounded-lg flex-1 ml-1"
                 type="text"
-                placeholder="Ingresa el nombre del Nuevo Cliente"
+                placeholder="Ingresa el nombre del Nuevo Campesino"
                 id="name"
                 name='name'
                 value={name}

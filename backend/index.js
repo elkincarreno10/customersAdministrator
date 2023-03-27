@@ -2,7 +2,6 @@ import express from "express";
 import dotenv from 'dotenv'
 import cors from 'cors'
 import db from "./config/db.js";
-import path from 'path'
 import loginRoutes from './routes/loginRoutes.js'
 import clientesRoutes from './routes/clientesRoutes.js'
 import campesinosRoutes from './routes/campesinosRoutes.js'
