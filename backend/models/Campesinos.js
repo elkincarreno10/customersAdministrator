@@ -26,6 +26,6 @@ const Campesino = db.define('Campesinos', {
     }
 })
 
-Campesino.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+Campesino.belongsTo(Usuario, { foreignKey: 'usuarioId', onDelete: 'CASCADE' });
 
 export default Campesino

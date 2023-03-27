@@ -15,6 +15,13 @@ const login = async (req, res) => {
         })
     }
 
+    if(usuario.confirmado === '0') {
+        return res.status(403).json({
+            msg: 'El usuario no ha sido confirmado',
+            type: 'error'
+        })
+    }
+
     if(!usuario.verificarPassword(password)) {
         return res.status(403).json({
             msg: 'Password Incorrecto',
@@ -35,7 +42,7 @@ const registrar = async (req, res) => {
     const existeUsuario = await Usuario.findOne({ where: {email}})
 
     if(existeUsuario) {
-        return res.json({
+        return res.status(403).json({
             msg: 'El usuario ya existe',
             type: 'error'
         })
@@ -74,7 +81,7 @@ const confirmar = async (req, res) => {
     }
 
     try {
-        usuario.confirmado = 1
+        usuario.confirmado = '1'
         usuario.token = null
         await usuario.save()
 

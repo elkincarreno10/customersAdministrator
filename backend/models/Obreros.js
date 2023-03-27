@@ -26,6 +26,6 @@ const Obrero = db.define('Obreros', {
     }
 })
 
-Obrero.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+Obrero.belongsTo(Usuario, { foreignKey: 'usuarioId', onDelete: 'CASCADE' });
 
 export default Obrero

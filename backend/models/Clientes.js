@@ -26,6 +26,6 @@ const Cliente = db.define('Clientes', {
     }
 })
 
-Cliente.belongsTo(Usuario, { foreignKey: 'usuarioId' });
+Cliente.belongsTo(Usuario, { foreignKey: 'usuarioId', onDelete: 'CASCADE' });
 
 export default Cliente
