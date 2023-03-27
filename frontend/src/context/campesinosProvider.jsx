@@ -35,8 +35,8 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios('/campesinos', config)
-            setCampesinos(data.campesinos)
+            const { data } = await clienteAxios('/api/campesinos', config)
+            setCampesinos(data?.campesinos)
         } catch (error) {
             console.log(error)
         }
@@ -57,20 +57,20 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/campesinos/crear-campesino', {name: name}, config)
-            const campesino = data.campesino
+            const { data } = await clienteAxios.post('/api/campesinos/crear-campesino', {name: name}, config)
+            const campesino = data?.campesino
             setCampesinos([ campesino, ...campesinos ])
             navigate('/campesinos')
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
             }, 3000);
         } catch (error) {
             setAlerta({
-                msg: error.response.data.msg,
-                type: error.response.data.type
+                msg: error?.response?.data?.msg,
+                type: error?.response?.data?.type
             })
             setTimeout(() => {
                 setAlerta({})
@@ -90,9 +90,9 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/campesinos/actualizar-campesino', campesino, config)
+            const { data } = await clienteAxios.post('/api/campesinos/actualizar-campesino', campesino, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
 
             // Actualizar en el DOM
@@ -137,10 +137,10 @@ const CampesinoProvider = ({children}) => {
                         }
                     }
                     const eliminarCampesino = async () => {
-                        const { data } = await clienteAxios(`/campesinos/eliminar-campesino/${id}`, config)
+                        const { data } = await clienteAxios(`/api/campesinos/eliminar-campesino/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setCampesinos(campesinos.filter(campesino => campesino.id !== id))
@@ -165,8 +165,8 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios(`/campesinos/facturas/${id}`, config)
-            setFacturas(data.facturas)
+            const { data } = await clienteAxios(`/api/campesinos/facturas/${id}`, config)
+            setFacturas(data?.facturas)
             setCampesinoFacturas(id)
         } catch (error) {
             console.log(error)
@@ -186,10 +186,10 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/campesinos/crear-factura', datos, config)
-            const factura = data.factura
+            const { data } = await clienteAxios.post('/api/campesinos/crear-factura', datos, config)
+            const factura = data?.factura
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -226,9 +226,9 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/campesinos/editar-factura', datos, config)
+            const { data } = await clienteAxios.post('/api/campesinos/editar-factura', datos, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -273,10 +273,10 @@ const CampesinoProvider = ({children}) => {
                         }
                     }
                     const destruirFactura = async () => {
-                        const { data } = await clienteAxios(`/campesinos/eliminar-factura/${id}`, config)
+                        const { data } = await clienteAxios(`/api/campesinos/eliminar-factura/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setFacturas(facturas.filter(factura => factura.id !== id))
@@ -301,8 +301,8 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios(`/campesinos/abonos/${id}`, config)
-            setAbonos(data.abonos)
+            const { data } = await clienteAxios(`/api/campesinos/abonos/${id}`, config)
+            setAbonos(data?.abonos)
             setCampesinoAbonos(id)
         } catch (error) {
             console.log(error)
@@ -322,10 +322,10 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/campesinos/crear-abono', datos, config)
-            const abono = data.abono
+            const { data } = await clienteAxios.post('/api/campesinos/crear-abono', datos, config)
+            const abono = data?.abono
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -362,9 +362,9 @@ const CampesinoProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/campesinos/editar-abono', datos, config)
+            const { data } = await clienteAxios.post('/api/campesinos/editar-abono', datos, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -409,10 +409,10 @@ const CampesinoProvider = ({children}) => {
                         }
                     }
                     const destruirAbono = async () => {
-                        const { data } = await clienteAxios(`/campesinos/eliminar-abono/${id}`, config)
+                        const { data } = await clienteAxios(`/api/campesinos/eliminar-abono/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setAbonos(abonos.filter(abono => abono.id !== id))

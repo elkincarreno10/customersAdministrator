@@ -32,7 +32,7 @@ const Campesinos = () => {
         <Link to='/crear-campesino' className="bg-blue-400 hover:bg-blue-600 text-white rounded-lg p-2 text-center w-40 mb-2">Nuevo Campesino</Link>
         {msg && <Alerta alerta={alerta} />}
         <div className="flex flex-col gap-8">
-          {campesinos.length ? 
+          {campesinos?.length ? 
             campesinos.map(campesino => (
               <div className="bg-gray-200 p-4 rounded-lg shadow-lg flex justify-between items-center" key={campesino.id}>
                 <div className="flex flex-col">

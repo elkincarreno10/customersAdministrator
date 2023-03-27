@@ -29,8 +29,8 @@ const ObreroProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios('/obreros', config)
-            setObreros(data.obreros)
+            const { data } = await clienteAxios('/api/obreros', config)
+            setObreros(data?.obreros)
         } catch (error) {
             console.log(error)
         }
@@ -50,20 +50,20 @@ const ObreroProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/obreros/crear-obrero', {name: name}, config)
-            const obrero = data.obrero
+            const { data } = await clienteAxios.post('/api/obreros/crear-obrero', {name: name}, config)
+            const obrero = data?.obrero
             setObreros([...obreros, obrero])
             navigate('/obreros')
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
             }, 3000);
         } catch (error) {
             setAlerta({
-                msg: error.response.data.msg,
-                type: error.response.data.type
+                msg: error?.response?.data?.msg,
+                type: error?.response?.data?.type
             })
             setTimeout(() => {
                 setAlerta({})
@@ -83,9 +83,9 @@ const ObreroProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/obreros/actualizar-obrero', obrero, config)
+            const { data } = await clienteAxios.post('/api/obreros/actualizar-obrero', obrero, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
 
             // Actualizar en el DOM
@@ -130,10 +130,10 @@ const ObreroProvider = ({children}) => {
                         }
                     }
                     const eliminarObrero = async () => {
-                        const { data } = await clienteAxios(`/obreros/eliminar-obrero/${id}`, config)
+                        const { data } = await clienteAxios(`/api/obreros/eliminar-obrero/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setObreros(obreros.filter(obrero => obrero.id !== id))

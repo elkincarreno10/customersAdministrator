@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import clienteAxios from "../config/clienteAxios"
 import Alerta from "../components/Alerta"
@@ -27,8 +27,8 @@ const Login = () => {
       }
 
       try {
-        const { data } = await clienteAxios.post('/', {email, password})
-        localStorage.setItem('token', data.token)
+        const { data } = await clienteAxios.post('/api/', {email, password})
+        localStorage.setItem('token', data?.token)
         setEmail('')
         setPassword('')
         setAlerta({})
@@ -36,8 +36,8 @@ const Login = () => {
         navigate('/clientes')
       } catch (error) {
         setAlerta({
-            msg: error.response.data.msg,
-            type: error.response.data.type
+            msg: error?.response?.data?.msg,
+            type: error?.response?.data?.type
         })
 
         setTimeout(() => {

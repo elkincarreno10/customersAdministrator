@@ -22,7 +22,7 @@ const Obreros = () => {
         <Link to='/crear-obrero' className="bg-blue-400 hover:bg-blue-600 text-white rounded-lg p-2 text-center w-32 mb-2">Nuevo Obrero</Link>
         {msg && <Alerta alerta={alerta} />}
         <div className="flex flex-col gap-8">
-          {obreros.length ? 
+          {obreros?.length ? 
             obreros.map(obrero => (
               <div className="bg-gray-200 p-4 rounded-lg shadow-lg flex justify-between items-center" key={obrero.id}>
                 <div className="flex flex-col">

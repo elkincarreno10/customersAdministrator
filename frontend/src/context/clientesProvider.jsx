@@ -35,8 +35,8 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios('/clientes', config)
-            setClientes(data.clientes)
+            const { data } = await clienteAxios('/api/clientes', config)
+            setClientes(data?.clientes)
         } catch (error) {
             console.log(error)
         }
@@ -56,20 +56,20 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/clientes/crear-cliente', {name: name}, config)
-            const cliente = data.cliente
+            const { data } = await clienteAxios.post('/api/clientes/crear-cliente', {name: name}, config)
+            const cliente = data?.cliente
             setClientes([...clientes, cliente])
             navigate('/clientes')
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
             }, 3000);
         } catch (error) {
             setAlerta({
-                msg: error.response.data.msg,
-                type: error.response.data.type
+                msg: error?.response?.data?.msg,
+                type: error?.response?.data?.type
             })
             setTimeout(() => {
                 setAlerta({})
@@ -89,9 +89,9 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/clientes/actualizar-cliente', cliente, config)
+            const { data } = await clienteAxios.post('/api/clientes/actualizar-cliente', cliente, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
 
             // Actualizar en el DOM
@@ -136,10 +136,10 @@ const ClienteProvider = ({children}) => {
                         }
                     }
                     const eliminarCliente = async () => {
-                        const { data } = await clienteAxios(`/clientes/eliminar-cliente/${id}`, config)
+                        const { data } = await clienteAxios(`/api/clientes/eliminar-cliente/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setClientes(clientes.filter(cliente => cliente.id !== id))
@@ -164,8 +164,8 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios(`/clientes/facturas/${id}`, config)
-            setFacturas(data.facturas)
+            const { data } = await clienteAxios(`/api/clientes/facturas/${id}`, config)
+            setFacturas(data?.facturas)
             setClienteFacturas(id)
         } catch (error) {
             console.log(error)
@@ -185,10 +185,10 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/clientes/crear-factura', datos, config)
-            const factura = data.factura
+            const { data } = await clienteAxios.post('/api/clientes/crear-factura', datos, config)
+            const factura = data?.factura
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -225,9 +225,9 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/clientes/editar-factura', datos, config)
+            const { data } = await clienteAxios.post('/api/clientes/editar-factura', datos, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -272,10 +272,10 @@ const ClienteProvider = ({children}) => {
                         }
                     }
                     const destruirFactura = async () => {
-                        const { data } = await clienteAxios(`/clientes/eliminar-factura/${id}`, config)
+                        const { data } = await clienteAxios(`/api/clientes/eliminar-factura/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setFacturas(facturas.filter(factura => factura.id !== id))
@@ -300,8 +300,8 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios(`/clientes/abonos/${id}`, config)
-            setAbonos(data.abonos)
+            const { data } = await clienteAxios(`/api/clientes/abonos/${id}`, config)
+            setAbonos(data?.abonos)
             setClienteAbonos(id)
         } catch (error) {
             console.log(error)
@@ -321,10 +321,10 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/clientes/crear-abono', datos, config)
-            const abono = data.abono
+            const { data } = await clienteAxios.post('/api/clientes/crear-abono', datos, config)
+            const abono = data?.abono
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -361,9 +361,9 @@ const ClienteProvider = ({children}) => {
                 }
             }
     
-            const { data } = await clienteAxios.post('/clientes/editar-abono', datos, config)
+            const { data } = await clienteAxios.post('/api/clientes/editar-abono', datos, config)
             setAlerta({
-                msg: data.msg
+                msg: data?.msg
             })
             setTimeout(() => {
                 setAlerta({})
@@ -408,10 +408,10 @@ const ClienteProvider = ({children}) => {
                         }
                     }
                     const destruirAbono = async () => {
-                        const { data } = await clienteAxios(`/clientes/eliminar-abono/${id}`, config)
+                        const { data } = await clienteAxios(`/api/clientes/eliminar-abono/${id}`, config)
                         Swal.fire(
                             'Eliminado!',
-                            data.msg,
+                            data?.msg,
                             'success'
                         )
                         setAbonos(abonos.filter(abono => abono.id !== id))

@@ -44,7 +44,7 @@ const FacturasCampesino = () => {
                 }
             }
 
-            const cambio = await clienteAxios(`/campesinos/cambiar-estado/${facturaActualizada.id}`, config)
+            const cambio = await clienteAxios(`/api/campesinos/cambiar-estado/${facturaActualizada.id}`, config)
 
         } catch (error) {
             console.log(error)
@@ -60,7 +60,7 @@ const FacturasCampesino = () => {
         </div>
         {msg && <Alerta alerta={alerta} />}
         <div className="flex flex-col gap-8">
-        {facturas.length ? 
+        {facturas?.length ? 
             facturas.map(factura => (
             <div className={`${factura.estado ? 'bg-blue-300' : 'bg-orange-200'} p-4 rounded-lg shadow-lg flex justify-between items-center`} key={factura.id}>
                 <div className="flex flex-col">

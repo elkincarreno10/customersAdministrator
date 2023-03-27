@@ -27,7 +27,7 @@ const AbonosCampesino = () => {
         </div>
         {msg && <Alerta alerta={alerta} />}
         <div className="flex flex-col gap-8">
-        {abonos.length ? 
+        {abonos?.length ? 
             abonos.map(abono => (
             <div className='bg-gray-300 p-4 rounded-lg shadow-lg flex justify-between items-center' key={abono.id}>
                 <div className="flex flex-col">

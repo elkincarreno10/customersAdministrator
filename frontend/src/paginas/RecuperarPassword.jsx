@@ -17,13 +17,13 @@ const RecuperarPassword = () => {
     useEffect(() => {
         const verificarToken = async () => {
             try {
-                const { data } = await clienteAxios(`/recuperar-password/${token}`)
+                const { data } = await clienteAxios(`/api/recuperar-password/${token}`)
                 setConfirmado(true)
-                setAlerta({msg: data.msg})
+                setAlerta({msg: data?.msg})
             } catch (error) {
                 setAlerta({
-                    msg: error.response.data.msg,
-                    type: error.response.data.type
+                    msg: error?.response?.data?.msg,
+                    type: error?.response?.data?.type
                 })
     
                 setTimeout(() => {
@@ -46,14 +46,14 @@ const RecuperarPassword = () => {
         }
 
         try {
-            const { data } = await clienteAxios.post(`/recuperar-password/${token}`, {password})
+            const { data } = await clienteAxios.post(`/api/recuperar-password/${token}`, {password})
             setPassword('')
-            setAlerta({msg: data.msg})
+            setAlerta({msg: data?.msg})
             navigate('/login')
         } catch (error) {
             setAlerta({
-                msg: error.response.data.msg,
-                type: error.response.data.type
+                msg: error?.response?.data?.msg,
+                type: error?.response?.data?.type
             })
 
             setTimeout(() => {

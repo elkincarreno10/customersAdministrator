@@ -21,13 +21,13 @@ const OlvidePassword = () => {
         }
 
         try {
-            const { data } = await clienteAxios.post('/olvide-password', {email})
+            const { data } = await clienteAxios.post('/api/olvide-password', {email})
             setEmail('')
-            setAlerta({msg: data.msg})
+            setAlerta({msg: data?.msg})
         } catch (error) {
           setAlerta({
-              msg: error.response.data.msg,
-              type: error.response.data.type
+              msg: error?.response?.data?.msg,
+              type: error?.response?.data?.type
           })
 
           setTimeout(() => {

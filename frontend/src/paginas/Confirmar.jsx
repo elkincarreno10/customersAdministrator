@@ -12,13 +12,13 @@ const Confirmar = () => {
     useEffect(() => {
         const verificarToken = async () => {
           try {
-              const { data } = await clienteAxios.get(`/confirmar/${token}`)
+              const { data } = await clienteAxios(`/api/api/confirmar/${token}`)
               setConfirmado(true)
-              setAlerta({msg: data.msg})
+              setAlerta({msg: data?.msg})
           } catch (error) {
               setAlerta({
-                  msg: error.response.data.msg,
-                  type: error.response.data.type
+                  msg: error?.response?.data?.msg,
+                  type: error?.response?.data?.type
               })
               console.log('hi')
   

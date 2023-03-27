@@ -24,15 +24,15 @@ const CrearCuenta = () => {
 
         try {
             // TODO Corregir la url de la api y agregar el email
-            const { data } = await clienteAxios.post('/registrar', {name, email, password})
+            const { data } = await clienteAxios.post('/api/registrar', {name, email, password})
             setName('')
             setEmail('')
             setPassword('')
-            setAlerta({msg: data.msg})
+            setAlerta({msg: data?.msg})
         } catch (error) {
             setAlerta({
-                msg: error.response.data.msg,
-                type: error.response.data.type
+                msg: error?.response?.data?.msg,
+                type: error?.response?.data?.type
             })
 
             setTimeout(() => {
