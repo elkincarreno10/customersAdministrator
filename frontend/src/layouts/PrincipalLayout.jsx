@@ -12,7 +12,7 @@ const PrincipalLayout = () => {
       {auth.id ?
       (
         <>
-          <main className="flex">
+          <main className="flex flex-col md:flex-row">
             <Sidebar />
             <Outlet />
           </main>
