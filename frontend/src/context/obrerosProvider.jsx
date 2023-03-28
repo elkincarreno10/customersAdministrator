@@ -13,6 +13,7 @@ const ObreroProvider = ({children}) => {
     const [ obreros, setObreros ] = useState([])
     const [ obreroEditar, setObreroEditar ] = useState({})
     const [ alerta, setAlerta ] = useState({})
+    const [ cargando, setCargando ] = useState(false)
 
     const navigate = useNavigate()
 
@@ -21,6 +22,7 @@ const ObreroProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
     
             const config = {
                 headers: {
@@ -31,6 +33,7 @@ const ObreroProvider = ({children}) => {
     
             const { data } = await clienteAxios('/api/obreros', config)
             setObreros(data?.obreros)
+            setCargando(false)
         } catch (error) {
             console.log(error)
         }
@@ -157,7 +160,8 @@ const ObreroProvider = ({children}) => {
                 handleEditarObrero,
                 eliminarObrero,
                 alerta,
-                setAlerta
+                setAlerta,
+                cargando
             }}
         >
             {children}

@@ -19,6 +19,7 @@ const CampesinoProvider = ({children}) => {
     const [ abonos, setAbonos ] = useState([])
     const [ abonoEditar, setAbonoEditar ] = useState({})
     const [ alerta, setAlerta ] = useState({})
+    const [ cargando, setCargando ] = useState(false)
 
     const navigate = useNavigate()
 
@@ -27,6 +28,7 @@ const CampesinoProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
     
             const config = {
                 headers: {
@@ -37,6 +39,7 @@ const CampesinoProvider = ({children}) => {
     
             const { data } = await clienteAxios('/api/campesinos', config)
             setCampesinos(data?.campesinos)
+            setCargando(false)
         } catch (error) {
             console.log(error)
         }
@@ -157,6 +160,7 @@ const CampesinoProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
     
             const config = {
                 headers: {
@@ -167,6 +171,7 @@ const CampesinoProvider = ({children}) => {
     
             const { data } = await clienteAxios(`/api/campesinos/facturas/${id}`, config)
             setFacturas(data?.facturas)
+            setCargando(false)
             setCampesinoFacturas(id)
         } catch (error) {
             console.log(error)
@@ -293,6 +298,7 @@ const CampesinoProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
     
             const config = {
                 headers: {
@@ -303,6 +309,7 @@ const CampesinoProvider = ({children}) => {
     
             const { data } = await clienteAxios(`/api/campesinos/abonos/${id}`, config)
             setAbonos(data?.abonos)
+            setCargando(false)
             setCampesinoAbonos(id)
         } catch (error) {
             console.log(error)
@@ -455,7 +462,8 @@ const CampesinoProvider = ({children}) => {
                 actualizarAbono,
                 abonoEditar,
                 setAbonoEditar,
-                eliminarAbono
+                eliminarAbono,
+                cargando
             }}
         >
             {children}

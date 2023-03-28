@@ -7,7 +7,7 @@ const Clientes = () => {
 
   const navigate = useNavigate()
 
-  const { clientes, setClienteEditar, eliminarCliente, obtenerFacturas, alerta, obtenerAbonos } = useClientes()
+  const { clientes, setClienteEditar, eliminarCliente, obtenerFacturas, alerta, obtenerAbonos, cargando } = useClientes()
   
   const handleEditarCliente = cliente => {
     setClienteEditar(cliente)
@@ -25,6 +25,8 @@ const Clientes = () => {
   }
 
   const { msg } = alerta
+
+  if(cargando) return 'Cargando...'
 
     return (
       <div className="bg-gray-50 flex-1 flex flex-col gap-3 py-10 px-10 lg:px-24">

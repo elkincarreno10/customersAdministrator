@@ -19,6 +19,7 @@ const ClienteProvider = ({children}) => {
     const [ abonos, setAbonos ] = useState([])
     const [ abonoEditar, setAbonoEditar ] = useState({})
     const [ alerta, setAlerta ] = useState({})
+    const [ cargando, setCargando ] = useState(false)
 
     const navigate = useNavigate()
 
@@ -27,6 +28,8 @@ const ClienteProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
+
     
             const config = {
                 headers: {
@@ -37,6 +40,7 @@ const ClienteProvider = ({children}) => {
     
             const { data } = await clienteAxios('/api/clientes', config)
             setClientes(data?.clientes)
+            setCargando(false)
         } catch (error) {
             console.log(error)
         }
@@ -156,6 +160,7 @@ const ClienteProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
     
             const config = {
                 headers: {
@@ -166,6 +171,7 @@ const ClienteProvider = ({children}) => {
     
             const { data } = await clienteAxios(`/api/clientes/facturas/${id}`, config)
             setFacturas(data?.facturas)
+            setCargando(false)
             setClienteFacturas(id)
         } catch (error) {
             console.log(error)
@@ -292,6 +298,7 @@ const ClienteProvider = ({children}) => {
         try {
             const token = localStorage.getItem('token')
             if(!token) return
+            setCargando(true)
     
             const config = {
                 headers: {
@@ -302,6 +309,7 @@ const ClienteProvider = ({children}) => {
     
             const { data } = await clienteAxios(`/api/clientes/abonos/${id}`, config)
             setAbonos(data?.abonos)
+            setCargando(false)
             setClienteAbonos(id)
         } catch (error) {
             console.log(error)
@@ -453,7 +461,8 @@ const ClienteProvider = ({children}) => {
                 actualizarAbono,
                 abonoEditar,
                 setAbonoEditar,
-                eliminarAbono
+                eliminarAbono,
+                cargando
             }}
         >
             {children}

@@ -9,7 +9,7 @@ const FacturasCampesino = () => {
 
     const navigate = useNavigate()
 
-    const { facturas, setFacturas, setFacturaEditar, eliminarFactura, alerta } = useCampesinos()
+    const { facturas, setFacturas, setFacturaEditar, eliminarFactura, alerta, cargando } = useCampesinos()
 
 
     const { msg } = alerta
@@ -50,6 +50,8 @@ const FacturasCampesino = () => {
             console.log(error)
         }
     }
+
+    if(cargando) return 'Cargando...'
 
   return (
     <div className="bg-gray-50 flex-1 flex flex-col gap-3 py-10 px-10 lg:px-24">

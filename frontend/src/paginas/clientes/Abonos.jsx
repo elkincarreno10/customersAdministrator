@@ -8,7 +8,7 @@ const AbonosCliente = () => {
 
     const navigate = useNavigate()
 
-    const { abonos, setAbonoEditar, eliminarAbono, alerta } = useClientes()
+    const { abonos, setAbonoEditar, eliminarAbono, alerta, cargando } = useClientes()
 
 
     const handleEditarAbono = abono => {
@@ -17,6 +17,8 @@ const AbonosCliente = () => {
     }
 
     const { msg } = alerta
+
+    if(cargando) return 'Cargando...'
 
   return (
     <div className="bg-gray-50 flex-1 flex flex-col gap-3 py-10 px-10 lg:px-24">
