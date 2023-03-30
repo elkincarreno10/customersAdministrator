@@ -13,10 +13,9 @@ This application is deployed  Please check it out 😄 <a href='https://fullstac
 
 
 > ## Do you want to change the code?
-## Some basic Git commands are:
+## Some basic Git command is:
 ```
 $ git clone https://github.com/elkincarreno10/customersAdministrator.git
-$ cd C10-G31-ft-mern
 ```
 
 > ## Setup
