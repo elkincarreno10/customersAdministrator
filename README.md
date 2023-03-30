@@ -1,6 +1,6 @@
-b># Customers Administrator
+# Customers Administrator
 
-# Description
+> # Description
 An application to administrate your company, this app was built with Node, React, Express anda MySQL.
 <br></br>
 > # Features
@@ -15,7 +15,7 @@ This application is deployed  Please check it out 😄 <a href='https://fullstac
 > ## Do you want to change the code?
 ## Some basic Git commands are:
 ```
-$ git clone https://github.com/No-Country/C10-G31-ft-mern.git
+$ git clone https://github.com/elkincarreno10/customersAdministrator.git
 $ cd C10-G31-ft-mern
 ```
 
